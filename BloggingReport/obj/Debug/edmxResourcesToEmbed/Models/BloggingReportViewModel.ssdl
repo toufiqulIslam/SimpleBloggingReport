@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BloggingReportModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'BloggingReport.dbo.comments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="comments">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="post_id" />
+      <PropertyRef Name="comment" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="post_id" Type="int" Nullable="false" />
+    <Property Name="like_count" Type="int" />
+    <Property Name="dislike_count" Type="int" />
+    <Property Name="comment" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'BloggingReport.dbo.post' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="post">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="title" />
+      <PropertyRef Name="description" />
+      <PropertyRef Name="created_on" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="title" Type="varchar(max)" Nullable="false" />
+    <Property Name="description" Type="varchar(max)" Nullable="false" />
+    <Property Name="created_on" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'BloggingReport.dbo.user' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="email" />
+      <PropertyRef Name="password" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar(max)" Nullable="false" />
+    <Property Name="email" Type="varchar(max)" Nullable="false" />
+    <Property Name="password" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="BloggingReportModelStoreContainer">
+    <EntitySet Name="comments" EntityType="Self.comments" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [comments].[id] AS [id], 
+    [comments].[post_id] AS [post_id], 
+    [comments].[like_count] AS [like_count], 
+    [comments].[dislike_count] AS [dislike_count], 
+    [comments].[comment] AS [comment]
+    FROM [dbo].[comments] AS [comments]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="post" EntityType="Self.post" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [post].[id] AS [id], 
+    [post].[user_id] AS [user_id], 
+    [post].[title] AS [title], 
+    [post].[description] AS [description], 
+    [post].[created_on] AS [created_on]
+    FROM [dbo].[post] AS [post]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="user" EntityType="Self.user" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [user].[id] AS [id], 
+    [user].[name] AS [name], 
+    [user].[email] AS [email], 
+    [user].[password] AS [password]
+    FROM [dbo].[user] AS [user]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
